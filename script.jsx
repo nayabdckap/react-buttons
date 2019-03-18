@@ -1,27 +1,34 @@
 class ComponentOne extends React.Component {
+    param_1;
+    param_2;
+    param_3;
+
     constructor(props) {
         super(props);
-        this.incrementValue_1 = this.incrementValue_1.bind(this)
-        this.incrementValue_2 = this.incrementValue_2.bind(this)
-        this.incrementValue_3 = this.incrementValue_3.bind(this)
+        this.incrementValue = this.incrementValue.bind(this)
 
         this.state = {
-            value_1: 5,
-            value_2: 10,
-            value_3: 20
+            // value_1: 5,
+            // value_2: 10,
+            // value_3: 20
+            value: [5, 10, 20]
         }
     }
 
-    incrementValue_1() {
-        this.setState({value_1: this.state.value_1 + 5})
-    }
+    incrementValue(param_1, param_2, param_3) {
+        var i;
+        for (i = 0; i <= (this.state.value.length - 1); i++) {
+            // console.log(this.state.value[i])
+            console.log(this.state.value[i] + param_1)
+            this.setState({
+                value: this.state.value[i] + param_1
+            })
+        }
 
-    incrementValue_2() {
-        this.setState({value_2: this.state.value_2 + 10})
-    }
+        // if (param_1 === 5) this.setState({value_1: this.state.value_1 + param_1})
+        // if (param_2 === 10) this.setState({value_2: this.state.value_2 + param_2})
+        // if (param_3 === 20) this.setState({value_3: this.state.value_3 + param_3})
 
-    incrementValue_3() {
-        this.setState({value_3: this.state.value_3 + 20})
     }
 
     render() {
@@ -31,25 +38,27 @@ class ComponentOne extends React.Component {
                     <input type="button"
                            className=""
                            value="Multiples of 5"
-                           onClick={this.incrementValue_1}
+                           onClick={() => this.incrementValue(this.param_1 = 5, this.param_2, this.param_3)}
+                        // onClick={() => this.incrementValue(this.param_1 = this.state.value_1)}
                     />
-                    {this.state.value_1}
+                    {this.state.value[0]}
+                    {"hhh"}
                 </div>
                 <div>
                     <input type="button"
                            className=""
                            value="Multiples of 10"
-                           onClick={this.incrementValue_2}
+                           onClick={() => this.incrementValue(this.param_1, this.param_2 = 10, this.param_3)}
                     />
-                    {this.state.value_2}
+                    {this.state.value[1]}
                 </div>
                 <div>
                     <input type="button"
                            className=""
                            value="Multiples of 20"
-                           onClick={this.incrementValue_3}
+                           onClick={() => this.incrementValue(this.param_1, this.param_1, this.param_3 = 20)}
                     />
-                    {this.state.value_3}
+                    {this.state.value[2]}
                 </div>
             </div>
         )
